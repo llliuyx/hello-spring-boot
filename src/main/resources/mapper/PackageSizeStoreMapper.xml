@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.liu.hellospringboot.mapper.StorePackageSizeMapper">
+
+    <select id="selectPackageSizeByParams" parameterType="String" resultType="StorePackageSizeEntity">
+        SELECT id, app_name, app_version, platform, package_size, phone_model
+        FROM package_size_store
+        WHERE app_name = #{app_name} and platform = #{platform}
+    </select>
+
+    <insert id="insertPackageSize" parameterType="StorePackageSizeEntity" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO package_size_store (
+            app_name, app_version, platform, package_size, phone_model, dt
+        ) VALUES (
+            #{appName}, #{appVersion}, #{platform}, #{packageSize}, #{phoneModel}, #{dt}
+         )
+    </insert>
+
+</mapper>
